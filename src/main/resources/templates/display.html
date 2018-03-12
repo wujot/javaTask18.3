@@ -1,0 +1,77 @@
+<!doctype HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.thymeleaf.org ">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <title>Products App v0.1</title>
+
+</head>
+<body>
+
+<div class="container-fluid" style="display: flex; flex-direction: column;">
+    <div class="header bg-dark text-white" style="position: absolute; top: 0; left: 0; height: 20%; width: 100%;">
+        <nav class="navbar sticky-top navbar-light bg-light" style="border: 1px solid #343a45;">
+            <td><a class="navbar-brand" href="/display">Display all products</a></td>
+            <a class="navbar-brand" href="/display?category=Groceries">Display groceries items </a></a>
+            <a class="navbar-brand" href="/display?category=Household">Display household items</a></li>
+            <a class="navbar-brand" href="/display?category=Others">Display other items</a>
+        </nav>
+    </div>
+
+    <div class="body">
+        <div class="card-group" style="left: 0; margin: 0; position: absolute; top: 20%; width: 100%; bottom: 50%;">
+            <div class="card">
+                <div class="card-header" th:text="${category}" style="text-align: center;">Display</div>
+                <!--Table-->
+                <table class="table table-hover" th:list="${listOfProduct}">
+
+                    <!--Table head-->
+                    <thead>
+                    <tr>
+                        <th>Product Name</th>
+                        <th>Category</th>
+                        <th>Price</th>
+                    </tr>
+                    </thead>
+                    <!--Table head-->
+
+                    <!--Table body-->
+                    <tbody>
+                    <tr th:each="product : ${listOfProduct}" th:object="${product}">
+                        <td th:text="*{name}"></td>
+                        <td th:text="*{category}"></td>
+                        <td th:text="*{price}"></td>
+                    </tr>
+                    <tr>
+                        <td rowspan="2">Total: </td>
+                        <td></td>
+                        <td th:text="${sum}"></td>
+                    </tr>
+                    </tbody>
+                    <!--Table body-->
+
+                </table>
+                <!--Table-->
+            </div>
+        </div>
+
+    </div>
+</div>
+<div class="footer bg-dark text-white sticky-bottom" style="position: absolute; bottom: 0; width: 100%; height: 10%;">
+    <h1 style="position: absolute; left: 1%; bottom: 0;">Products App</h1>
+    <h2 style=" position: absolute; right: 1%; bottom: 0;">version 0.1</h2>
+</div>
+</div>
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
