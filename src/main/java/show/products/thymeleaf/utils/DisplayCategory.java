@@ -7,6 +7,7 @@ import java.util.List;
 
 public class DisplayCategory {
 
+    /*
     // method gets list of appropriate category
     public static List<Product> displayProductByCategory(List<Product> products, String category) {
         List<Product> productsByCategory = new ArrayList<>();
@@ -27,4 +28,5 @@ public class DisplayCategory {
         }
         return sum;
     }
+    */
 }

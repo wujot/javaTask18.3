@@ -7,6 +7,7 @@ import show.products.thymeleaf.model.Product;
 import show.products.thymeleaf.model.Products;
 import show.products.thymeleaf.utils.DisplayCategory;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -40,16 +41,37 @@ public class AppController {
         List<Product> listOfProducts;
         double sum = 0;
         if (category != null) {
-            List<Product> productsByCategory = DisplayCategory.displayProductByCategory(products.getProducts(), category);
+            List<Product> productsByCategory = displayProductByCategory(products.getProducts(), category);
             listOfProducts = productsByCategory;
         } else {
             listOfProducts = products.getProducts();
             category = "All products";
         }
-        sum = DisplayCategory.sumOfPrices(listOfProducts);
+        sum = sumOfPrices(listOfProducts);
         model.addAttribute("listOfProduct", listOfProducts);
         model.addAttribute("sum", sum);
         model.addAttribute("category", category);
         return "display";
+    }
+
+    // method gets list of appropriate category
+    private static List<Product> displayProductByCategory(List<Product> products, String category) {
+        List<Product> productsByCategory = new ArrayList<>();
+        for (Product product: products) {
+            if (product.getCategory().equals(category))
+                productsByCategory.add(product);
+        }
+        return productsByCategory;
+    }
+
+    // method calculate sum of products prices
+    private static double sumOfPrices(List<Product> products) {
+        double price = 0;
+        double sum = 0;
+        for (Product product : products) {
+            price = product.getPrice();
+            sum += price;
+        }
+        return sum;
     }
 }

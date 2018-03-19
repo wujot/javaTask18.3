@@ -2,12 +2,12 @@ package show.products.thymeleaf.model;
 
 public class Product {
     private String name;
-    private String price;
+    private double price;
     private String category;
 
     public Product() {}
 
-    public Product(String name, String price, String category) {
+    public Product(String name, double price, String category) {
         this.name = name;
         this.price = price;
         this.category = category;
@@ -21,11 +21,11 @@ public class Product {
         this.name = name;
     }
 
-    public String getPrice() {
+    public double getPrice() {
         return price;
     }
 
-    public void setPrice(String price) {
+    public void setPrice(double price) {
         this.price = price;
     }
 
